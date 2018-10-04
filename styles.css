@@ -19,6 +19,9 @@ body {
     width:100%;
     bottom:0;
 }
+.btn {
+	border-radius: 0;
+}
 
 /* tic tac toe */
 .hidden {

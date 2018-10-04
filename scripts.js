@@ -258,9 +258,9 @@ function playAgain(){
 		}
 		
 		function makeShapeAppear() {
-			var top = Math.random() * 100;
-			var left = Math.random() * 100;
-			var width = (Math.random() * 100) + 100;
+			var top = Math.random() * 150;
+			var left = Math.random() * 150;
+			var width = (Math.random() * 50) + 100;
 			if (Math.random() > 0.5) {
 				document.getElementById("shape").style.borderRadius = "50%";
 			} else {

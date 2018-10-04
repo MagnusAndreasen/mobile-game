@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8">
 <title>Mobile Games</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,15 +18,15 @@
     <h1>Mobile Games</h1>
   </div>
   <div role="main" class="ui-content"> <!-- main content "container" -->
-    <p> Welcome to our gaming site.<br>
+	  <h3> Welcome to our gaming site.</h3><br>
       <br>
-      Here you can play the three mobile games "Tic Tac Toe", "Number Guess" and "Reaction Game".<br>
+      <p>Here you can play the three mobile games "Tic Tac Toe", "Number Guess" and "Reaction Game".<br>
       <br>
-      Click on the links below to play!</p>
+      Click on the buttons below to play!</p>
     <br>
-    <p><a href="#tictactoe">Play Tic Tac Toe</a></p>
-    <p><a href="#numberguess">Play Number Guess</a></p>
-    <p><a href="#reaction">Play Reaction Game</a></p>
+    <a href="#tictactoe" class="ui-btn">Play Tic Tac Toe</a>
+    <a href="#numberguess" class="ui-btn">Play Number Guess</a>
+    <a href="#reaction" class="ui-btn">Play Reaction Game</a>
   </div>
   <div data-role="footer" data-position="fixed">
     <h3>Copyright <a href="http://magnusmultimedia.dk">MagnusMultimedia.dk</a> &copy; 2018</h3>
@@ -36,7 +35,7 @@
 <!-- end of homepage --> 
 <!-- start of tic tac toe -->
 <div data-role="page" id="tictactoe"> <!-- jQuery mobile "container"-->
-  <div data-role="header"> <a href="#homepage" data-transition="flip">Back</a>
+  <div data-role="header"> <a href="#homepage" class="ui-btn ui-icon-home ui-btn-icon-left" data-transition="flip">Home</a>
     <h1>Tic Tac Toe</h1>
   </div>
   <div role="main" class="ui-content"> <!-- main content "container" -->
@@ -60,7 +59,7 @@
       </tbody>
     </table>
     <h2 id="msg" >Click fields to play!</h2>
-    <button id="playAgain" >Play it again, Sam!</button>
+	<a id="playAgain" href="#tictactoe" class="ui-btn">Play it again, Sam!</a>
     <hr>
     <p>Player 1 score: <span id="player1"></span></p>
     <p>Player 2 score: <span id="player2"></span></p>
@@ -73,7 +72,7 @@
 <!-- end of tic tac toe --> 
 <!-- start of number guess -->
 <div data-role="page" id="numberguess"> <!-- jQuery mobile "container"-->
-  <div data-role="header"> <a href="#homepage" data-transition="flip">Back</a>
+  <div data-role="header"> <a href="#homepage" class="ui-btn ui-icon-home ui-btn-icon-left" data-transition="flip">Home</a>
     <h1>Number Guess</h1>
   </div>
   <div role="main" class="ui-content"> <!-- main content "container" -->
@@ -89,15 +88,15 @@
         <div class="col-sm-12 order-sm-2">
           <div id="output" class="text-center alert alert-success" role="alert">I am thinking of a number between 0 and 10...</div>
           <form method="post" autocomplete="off">
-            <div class="input-group">
+            <div class="input-group  shadow-none">
               <input id="guess" class="form-control" data-validation="number" data-validation-allowing="range[0;10]" data-validation-error-msg-container="#error-dialog" placeholder="Enter your guess..." autofocus>
             </div>
             <!-- http://www.formvalidator.net/#configuration_position -->
             <div id="error-dialog" class="mt-3"></div>
-            <button id="play" class="mt-3 mb-3 p-3 btn btn-secondary">Guess the magic number!</button>
+            <button id="play" class="ui-btn">Do you feel lucky, punk!?</button>
           </form>
           <!-- should be outside the form -->
-          <button id="playAgainNumber" class="mt-3 mb-3 p-3 btn btn-secondary hidden">Play again!</button>
+          <button id="playAgainNumber" class="ui-btn hidden">Play again...I dare you!</button>
         </div>
         <!-- Second column -->
         <div class="col-sm-6 order-sm-1">
@@ -114,7 +113,7 @@
 <!-- end of number guess --> 
 <!-- start of reaction game -->
 <div data-role="page" id="reaction"> <!-- jQuery mobile "container"-->
-  <div data-role="header"> <a href="#homepage" data-transition="flip">Back</a>
+  <div data-role="header"> <a href="#homepage" class="ui-btn ui-icon-home ui-btn-icon-left" data-transition="flip">Home</a>
     <h1>Reaction Game</h1>
   </div>
   <div role="main" class="ui-content"> <!-- main content "container" -->
