@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Number Guess</title>
+<!-- loading jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<!-- loading formvalidator plugin (formvalidator.net) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+	
+	$( document ).ready(function() {
+		// form validering
+		// custom language object
+		var myErrorFeedback = {
+			badInt: 'Please enter a number between 0-10.'
+		}
+		// formvalidator setup function
+		$.validate({
+			// language object overwritten by custom language object
+    		language : myErrorFeedback,
+			inputParentClassOnError : 'alert alert-danger' // <- assigning Bootstrap's alert classes to error message container
+  		});
+  	//prevent form submission
+    $("form").submit(function(event){
+		//console.log('Form not submitted!');
+		playGame();
+		
+        event.preventDefault();
+    });
+});
+	
+</script>
+<style>
+	body {
+				font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+				text-align: center;
+				vertical-align: middle;
+			}
+</style>
+</head>
+
+<body>
+<div data-role="page" id="numberguess"> <!-- jQuery mobile "container"-->
+  <div data-role="header"> <a href="index.html" data-transition="flip">Back</a>
+    <h1>Number Guess</h1>
+  </div>
+  <div role="main" class="ui-content"> <!-- main content "container" -->
+    <div class="container"> 
+      <!-- "Hero" unit -->
+      <div class="jumbotron">
+        <h1 class="display-5 text-center">Guess a number!</h1>
+      </div>
+      <!-- main content -->
+      <div class="row"> 
+        <!-- 2 columns, reordered on large devices and up --> 
+        <!-- First column -->
+        <div class="col-sm-12 order-sm-2">
+          <div id="output" class="text-center alert alert-success" role="alert">I am thinking of a number between 0 and 10...</div>
+          <form method="post" autocomplete="off">
+            <div class="input-group">
+              <input id="guess" class="form-control" data-validation="number" data-validation-allowing="range[0;10]" data-validation-error-msg-container="#error-dialog" placeholder="Enter your guess..." autofocus>
+            </div>
+            <!-- http://www.formvalidator.net/#configuration_position -->
+            <div id="error-dialog" class="mt-3"></div>
+            <button id="play" class="mt-3 mb-3 p-3 btn btn-secondary">Guess the magic number!</button>
+          </form>
+          <!-- should be outside the form -->
+          <button id="playAgain" class="mt-3 mb-3 p-3 btn btn-secondary hidden">Play again!</button>
+        </div>
+        <!-- Second column -->
+        <div class="col-sm-6 order-sm-1">
+          <div class="text-center">Try and guess the magic number - you have 3 attempts!</div>
+        </div>
+      </div>
+      <!-- Container end --> 
+    </div>
+  </div>
+  <div data-role="footer">
+    <h3>Copyright <a href="http://magnusmultimedia.dk">MagnusMultimedia.dk</a> &copy; 2018</h3>
+  </div>
+</div>
+<script>
+	
+/* 
+Things to improve ;-):
+- Prevent form submission (using jQuery!)
+- A randomized magic number!
+- Catch the player's guess from the form input field
+- Match the player's guess agains the magic number
+- Add proper feedback (That's too high - That's too low - You've got it)
+- Player has only 3 guesses
+- The game should prevent the player from playing after the game is finished
+- Player can only enter numbers from 0-10, not words, into the input field (JS formcheck)
+- Build an appalling ææh appealing responsive interface (Bootstrap)
+*/
+	
+//Global game variables
+var magicNumber, input, output, button, playersGuess, guessesRemaining;
+	
+magicNumber = Math.floor(Math.random() * 11); // random number 0-10
+console.log(magicNumber);
+	
+//The game "controls"
+input = document.getElementById("guess");
+output = document.getElementById("output");
+button = document.getElementById("playAgain");
+button.addEventListener('click', playAgain);
+	
+//Game state variable
+guessesRemaining = 3;
+	
+function playGame(){
+	// core functionality:
+    // handling the game statistics (guessesRemaining)
+	playersGuess = parseInt(input.value); // converting string input to number!
+	//console.log(playersGuess);
+	// countdown
+	guessesRemaining -= 1;
+	// analyzing the player's guess (i.e. the variable playersGuess!)
+	if(playersGuess < magicNumber){
+		output.innerHTML = playersGuess + ' is too low! ' + guessesRemaining + ' guesses left.';
+		// clear the input field
+		input.value = '';
+		// autofocus
+		input.focus();
+	} else if(playersGuess > magicNumber){
+		output.innerHTML = playersGuess + ' is too high!' + guessesRemaining + ' guesses left.';
+		input.value = '';
+		input.focus();
+	} else if(playersGuess === magicNumber){
+		output.innerHTML = 'You got it! ' + playersGuess + ' is the magic number!';
+		endGame();
+	} 
+	// last attempt
+	if(guessesRemaining === 0 && playersGuess === magicNumber){
+		output.innerHTML = 'Yes - in the final attempt! ' + playersGuess + ' is the magic number!';
+		endGame();
+	} else if(guessesRemaining === 0){
+		output.innerHTML = 'Sorry - no more guesses left. The magic number was ' + magicNumber + '. Game over.';
+		endGame();
+	}
+	
+}// end function
+	
+function endGame(){	
+	// disabling all game controls
+	$("#playAgain").removeClass("hidden");
+	$("#play").addClass("hidden");
+	//Disable the input field
+	input.disabled = true;
+}
+	
+function playAgain(){
+	window.location.reload(true);
+}
+</script> 
+
+<!-- end of numberguess game page -->
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile Games</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<!-- loading formvalidator plugin (formvalidator.net) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+</head>
+
+<body>
+<div data-role="page" id="homepage"> <!-- jQuery mobile "container"-->
+  <div data-role="header">
+    <h1>Mobile Games</h1>
+  </div>
+  <div role="main" class="ui-content"> <!-- main content "container" -->
+    <p> Welcome to our gaming site.<br>
+      <br>
+      Here you can play the three mobile games "Tic Tac Toe", "Number Guess" and "Reaction Game".<br>
+      <br>
+      Click on the links below to play!</p>
+    <br>
+    <p><a href="#tictactoe">Play Tic Tac Toe</a></p>
+    <p><a href="#numberguess">Play Number Guess</a></p>
+    <p><a href="#reaction">Play Reaction Game</a></p>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h3>Copyright <a href="http://magnusmultimedia.dk">MagnusMultimedia.dk</a> &copy; 2018</h3>
+  </div>
+</div>
+<!-- end of homepage --> 
+<!-- start of tic tac toe -->
+<div data-role="page" id="tictactoe"> <!-- jQuery mobile "container"-->
+  <div data-role="header"> <a href="#homepage" data-transition="flip">Back</a>
+    <h1>Tic Tac Toe</h1>
+  </div>
+  <div role="main" class="ui-content"> <!-- main content "container" -->
+    <table>
+      <tbody>
+        <tr>
+          <td id="1">&nbsp;</td>
+          <td id="2">&nbsp;</td>
+          <td id="3">&nbsp;</td>
+        </tr>
+        <tr>
+          <td id="4">&nbsp;</td>
+          <td id="5">&nbsp;</td>
+          <td id="6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td id="7">&nbsp;</td>
+          <td id="8">&nbsp;</td>
+          <td id="9">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="msg" >Click fields to play!</h2>
+    <button id="playAgain" >Play it again, Sam!</button>
+    <hr>
+    <p>Player 1 score: <span id="player1"></span></p>
+    <p>Player 2 score: <span id="player2"></span></p>
+    <p>Draw: <span id="draw"></span></p>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h3>Copyright <a href="http://magnusmultimedia.dk">MagnusMultimedia.dk</a> &copy; 2018</h3>
+  </div>
+</div>
+<!-- end of tic tac toe --> 
+<!-- start of number guess -->
+<div data-role="page" id="numberguess"> <!-- jQuery mobile "container"-->
+  <div data-role="header"> <a href="#homepage" data-transition="flip">Back</a>
+    <h1>Number Guess</h1>
+  </div>
+  <div role="main" class="ui-content"> <!-- main content "container" -->
+    <div class="container"> 
+      <!-- "Hero" unit -->
+      <div class="jumbotron">
+        <h1 class="display-5 text-center">Guess a number!</h1>
+      </div>
+      <!-- main content -->
+      <div class="row"> 
+        <!-- 2 columns, reordered on large devices and up --> 
+        <!-- First column -->
+        <div class="col-sm-12 order-sm-2">
+          <div id="output" class="text-center alert alert-success" role="alert">I am thinking of a number between 0 and 10...</div>
+          <form method="post" autocomplete="off">
+            <div class="input-group">
+              <input id="guess" class="form-control" data-validation="number" data-validation-allowing="range[0;10]" data-validation-error-msg-container="#error-dialog" placeholder="Enter your guess..." autofocus>
+            </div>
+            <!-- http://www.formvalidator.net/#configuration_position -->
+            <div id="error-dialog" class="mt-3"></div>
+            <button id="play" class="mt-3 mb-3 p-3 btn btn-secondary">Guess the magic number!</button>
+          </form>
+          <!-- should be outside the form -->
+          <button id="playAgainNumber" class="mt-3 mb-3 p-3 btn btn-secondary hidden">Play again!</button>
+        </div>
+        <!-- Second column -->
+        <div class="col-sm-6 order-sm-1">
+          <div class="text-center">Try and guess the magic number - you have 3 attempts!</div>
+        </div>
+      </div>
+      <!-- Container end --> 
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h3>Copyright <a href="http://magnusmultimedia.dk">MagnusMultimedia.dk</a> &copy; 2018</h3>
+  </div>
+</div>
+<!-- end of number guess --> 
+<!-- start of reaction game -->
+<div data-role="page" id="reaction"> <!-- jQuery mobile "container"-->
+  <div data-role="header"> <a href="#homepage" data-transition="flip">Back</a>
+    <h1>Reaction Game</h1>
+  </div>
+  <div role="main" class="ui-content"> <!-- main content "container" -->
+    <p>Click on the boxes and circles as quickly as you can!</p>
+    <p class="bold">Your time: <span id="timeTaken"></span></p>
+    <div id="game">
+      <div id="shape"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed">
+    <h3>Copyright <a href="http://magnusmultimedia.dk">MagnusMultimedia.dk</a> &copy; 2018</h3>
+  </div>
+</div>
+
+<!-- end of reaction game --> 
+<script src="scripts.js"></script>
+</body>
+</html>

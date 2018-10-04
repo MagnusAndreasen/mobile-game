@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* main */
+body {
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* tic tac toe */
+.hidden {
+	display: none;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #D7CFCF;
+}
+td {
+	border: 6px solid white;
+	width: 33.333%;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+	text-align: center;
+	font-size: 5em;
+	vertical-align: middle;
+}
+/* https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
+td:after {
+	content: "";
+	display: block;
+	padding-bottom: 10%;
+}
+td:first-of-type {
+	border-left-color: transparent;
+	border-top-color: transparent;
+}
+td:nth-of-type(2) {
+	border-top-color: transparent;
+}
+td:nth-of-type(3) {
+	border-right-color: transparent;
+	border-top-color: transparent;
+}
+tr:nth-of-type(3) td {
+	border-bottom-color: transparent;
+}
+/* tic tac toe END */
+/* reaction game */
+#shape {
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	display: none;
+	position: relative;
+}
+.bold {
+	font-weight: bold;
+}
+#game {
+	margin-bottom: 100px;
+	padding-bottom: 50px;
+}
+/* reaction game END */
