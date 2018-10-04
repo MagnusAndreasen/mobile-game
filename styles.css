@@ -5,6 +5,20 @@ body {
 	text-align: center;
 	vertical-align: middle;
 }
+.ui-page {
+    min-height:100% !important;
+    height:auto !important;
+}
+
+.ui-content {
+    margin-bottom:42px; /* HEIGHT OF YOUR FOOTER */
+}
+
+.ui-footer {
+    position:absolute !important;
+    width:100%;
+    bottom:0;
+}
 
 /* tic tac toe */
 .hidden {
